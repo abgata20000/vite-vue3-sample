@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="sample">
         <h1>API通信のサンプル</h1>
         <button @click="onSubmitClicked">submit</button>
         <p v-if="submitLoading">loading...</p>
@@ -9,17 +9,21 @@
                 {{ image }}
             </li>
         </ul>
+        <ul>
+            <li v-for="(image, idx) in images" :key="idx">
+                {{ image }}
+            </li>
+        </ul>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue"
+import { defineComponent, ref, reactive } from "vue"
 import axios from "axios"
 import { useApi } from "@/hooks/useApi"
 export default defineComponent({
-    name: "ApiSample",
     components: {},
-    setup: () => {
+    setup() {
         const {
             handleApi,
             loading: submitLoading,
@@ -27,15 +31,17 @@ export default defineComponent({
         } = useApi(async () => {
             return await axios.get("https://dog.ceo/api/breed/hound/images")
         })
+        const images = ref([])
         const state = reactive({
             images: [],
         })
 
         const onSubmitClicked = async () => {
-            if (submitLoading) return
+            images.value = []
             state.images = []
             const results = await handleApi()
             results?.data?.message.forEach((image: never) => {
+                images.value.push(image)
                 state.images.push(image)
             })
         }
@@ -44,6 +50,7 @@ export default defineComponent({
             submitLoading,
             submitErrors,
             onSubmitClicked,
+            images,
             state,
         }
     },
