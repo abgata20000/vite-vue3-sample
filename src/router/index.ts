@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router"
 import Home from "@/views/Home.vue"
 import Sample from "@/views/Sample.vue"
+import ApiSample from "@/views/ApiSample.vue"
 const routes = [
     {
         path: "/",
@@ -11,6 +12,12 @@ const routes = [
         path: "/sample",
         name: "Sample",
         component: Sample,
+        meta: { layout: "sample" },
+    },
+    {
+        path: "/api_sample",
+        name: "ApiSample",
+        component: ApiSample,
         meta: { layout: "sample" },
     },
 ]
