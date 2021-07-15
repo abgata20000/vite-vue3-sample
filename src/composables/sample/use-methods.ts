@@ -1,8 +1,8 @@
 import { Ref } from "vue"
 import { v4 as uuid } from "uuid"
-import Sample from "@/types/sample"
+// import Sample from "@/types/sample"
 
-export default (items: Ref<Sample[]>) => {
+export default (items: Ref<any[]>) => {
     const addItem = (title = "タイトルです") => {
         const tmp = {
             id: uuid(),
