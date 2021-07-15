@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>API Sample</h1>
+        <h1>API通信のサンプル</h1>
         <button @click="onSubmitClicked">submit</button>
         <p v-if="submitLoading">loading...</p>
         <p v-if="submitErrors">submitErrors</p>
@@ -32,6 +32,7 @@ export default defineComponent({
         })
 
         const onSubmitClicked = async () => {
+            if (submitLoading) return
             state.images = []
             const results = await handleApi()
             results?.data?.message.forEach((image: never) => {

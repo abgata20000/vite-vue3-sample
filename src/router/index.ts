@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router"
 import Home from "@/views/Home.vue"
 import Sample from "@/views/Sample.vue"
 import ApiSample from "@/views/ApiSample.vue"
+import OptionsSample from "@/views/OptionsSample.vue"
 const routes = [
     {
         path: "/",
@@ -18,6 +19,12 @@ const routes = [
         path: "/api_sample",
         name: "ApiSample",
         component: ApiSample,
+        meta: { layout: "sample" },
+    },
+    {
+        path: "/options_sample",
+        name: "OptionsSample",
+        component: OptionsSample,
         meta: { layout: "sample" },
     },
 ]
